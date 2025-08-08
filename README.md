@@ -1,6 +1,6 @@
 # Sentiment Analysis Project
 
-This repository presents a comprehensive exploration of multiclass sentiment classification, blending traditional machine learning with deep learning techniques. It demonstrates how various embedding strategies and model architectures perform on nuanced emotional text data — from TF-IDF pipelines to transformer-powered classifiers
+This repository presents a comprehensive exploration of multiclass sentiment classification, blending traditional machine learning with deep learning techniques. It demonstrates how various embedding strategies and model architectures perform on nuanced emotional text data ; from TF-IDF pipelines to transformer-powered classifiers.
 
 
 This project experiments with NLP preprocessing, data loading, splitting, tokenization, vectorization, machine learning classifiers, deep learning classifiers with different architectures, fine-tuning a transformer model, all while addressing class imbalance, providing insightful evaluation approaches, and a final simple user interface.
