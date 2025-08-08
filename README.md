@@ -1,6 +1,7 @@
 # Sentiment Analysis Project
 
-This repository offers a rich exploration of **multiclass sentiment analysis and classification**, combining both traditional machine learning and deep learning approaches. It showcases how different embedding techniques and model architectures perform on nuanced emotional text data; from simple TF-IDF pipelines to transformer-powered classifiers.
+This repository presents a comprehensive exploration of multiclass sentiment classification, blending traditional machine learning with deep learning techniques. It demonstrates how various embedding strategies and model architectures perform on nuanced emotional text data — from TF-IDF pipelines to transformer-powered classifiers
+
 
 This project experiments with NLP preprocessing, data loading, splitting, tokenization, vectorization, machine learning classifiers, deep learning classifiers with different architectures, fine-tuning a transformer model, all while addressing class imbalance, providing insightful evaluation approaches, and a final simple user interface.
 
@@ -16,6 +17,7 @@ This project experiments with NLP preprocessing, data loading, splitting, tokeni
 
 | File | Description |
 |------|-------------|
+| `notebooks/` | Directory containing the five models jupyter notebooks. |
 | `TfidfVectorizer_Xgboost_sentiment_analysis.ipynb` | TF-IDF vectorization + XGBoost |
 | `BertTokenizer_Xgboost_sentiment_analysis.ipynb` | BERT tokenization + XGBoost classifier |
 | `FCN_Sentiment_analysis_pytorch.ipynb` | BERT tokenization + Fully Connected Network (PyTorch) |
@@ -29,10 +31,9 @@ This project experiments with NLP preprocessing, data loading, splitting, tokeni
    Ensure Python 3.x and required libraries are installed (see each script or notebook for details).
 
 2. **Run a model**  
-   Execute the notebook for step-by-step walkthroughs. Save and load models as you need.
-
+   Open any notebook for a step-by-step walkthrough. Save and load models as needed.
 3. **Try the Gradio interface**  
-    A Gradio-powered UI for live sentiment prediction.
+   Try out the live sentiment classifier via a simple web UI
 
 ## Dataset
 
@@ -46,10 +47,9 @@ This project uses the **dair-ai/emotion** dataset from Hugging Face:
 ## Tokenization & Feature Extraction
 
 * **BERT Tokenizer**:
-  + Uses bert-base-uncased from Hugging Face Transformers
-  + Outputs input_ids and attention_mask
-  + Sequences padded/truncated to 90 tokens
-  + Used for both PyTorch models and XGBoost (via token IDs or embeddings)
+  + Uses bert-base-uncased from Hugging Face Transformers.
+  + Outputs input_ids and attention_mask.
+
   ```python
     from transformers import AutoTokenizer
     model_name = "bert-base-uncased"
@@ -59,12 +59,9 @@ This project uses the **dair-ai/emotion** dataset from Hugging Face:
     train_data_numericalized = train_data.map(_tokenize, batched=True, batch_size=len(train_data))
   ```
 * **TF-IDF Vectorizer**:
-  + Uses scikit-learn's TfidfVectorizer
-  + Configured with:
-    - max_features=10_000
-    - ngram_range=(1,2)
-    - min_df=1, max_df=0.9
-  + Ideal for traditional ML models like XGBoost
+
+  + Uses scikit-learn's TfidfVectorizer.
+  
   ```python
     from sklearn.feature_extraction.text import TfidfVectorizer
     vectorizer = TfidfVectorizer(
@@ -78,22 +75,15 @@ This project uses the **dair-ai/emotion** dataset from Hugging Face:
 
 ## Modeling Approaches
 
-* **BERT + XGBoost**:
-  + Tokenize with BERT
-  + Use input_ids or [CLS] embeddings as features
-  + Train XGBoost with GPU acceleration and class weighting
-* **TF-IDF + XGBoost**:
-  + Vectorize text with TF-IDF
-  + Train XGBoost with sample weights or SMOTE
-* **FCN (PyTorch)**:
-  + Simple fully connected layers
-  + Uses BERT embeddings or token IDs
-* **RNN (PyTorch)**:
-  + Captures sequential dependencies
-  + Uses embedding + GRU/LSTM layers
-* **Transformer (PyTorch)**:
-  + Custom transformer architecture
-  + Trained end-to-end on emotion labels
+🧪 **Modeling Approaches**
+- TF-IDF + XGBoost: Fast, interpretable baseline.
+- BERT + XGBoost: Contextual embeddings with gradient boosting.
+- FCN (PyTorch): Lightweight deep learning classifier.
+- RNN (PyTorch): Sequential modeling with GRU/LSTM.
+- Transformer (PyTorch): Fine-tuned BERT with custom classification head.
+
+
+---
 
 ## Saving & Loading Models
 
@@ -101,7 +91,9 @@ This project uses the **dair-ai/emotion** dataset from Hugging Face:
 * **XGBoost models**: `model.save_model("xgb_model.json")` and `xgb.Booster.load_model()`
 * **All models are stored in the models/ directory**
 
-## Example Predictions
+---
+
+🔮 **Example Predictions**
 
 Here are some expanded test sentences used for evaluation:
 
@@ -120,6 +112,9 @@ for text in example_texts:
     sentiment, prob = predict_sentiment(text, my_model, autotokenizer, device, embedding_dim, classes)
     print(f"Text: {text}\nPredicted: {sentiment} ({prob:.3f})\n")
 ```
+---
+
+🖥️ **Gradio Interface**
 
 ```python
 # Gradio wrapper
@@ -149,4 +144,4 @@ gr.Interface(
 This project is designed to be modular, extensible, and educational. Whether you're benchmarking traditional ML against transformers, experimenting with embeddings, or deploying a sentiment classifier, you'll find tools and examples to support your workflow.  
 Feel free to contribute, extend, or adapt the models to your own datasets and tasks!
 
-Made with ❤️ by Salma
+Made with ❤️ by Salma.
